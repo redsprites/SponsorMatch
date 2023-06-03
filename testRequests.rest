@@ -1,0 +1,61 @@
+### GET REQUEST
+GET http://localhost:8080/api/
+
+
+### POST REQUEST
+POST http://localhost:8080/api/blogs/
+Content-Type: application/json
+Authorization: Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDRkYzVjNjFmMDBiMzk3Mzg1YjkxNDkiLCJpYXQiOjE2ODI4MjgyOTYsImV4cCI6MTY4NjQyODI5Nn0.7uEnrNTmsOXG6U2WQtCCCf6JJqpGhwX0h33Bl_0yQ4w
+
+{
+  "title": "My First Blog Post",
+  "content": "This is the content of my first blog post."
+}
+
+
+# {
+#   "email": "john.dee@example.com",
+#   "password": "password123"
+# }
+
+# {
+#   "first_name": "John",
+#   "last_name": "Doe",
+#   "username": "test12",
+#   "email": "test.test1@gmail.com",
+#   "password": "password123",
+#   "looking_for_internship": true
+# }
+
+### PUT REQUEST
+PUT http://localhost:8080/blogs/6445cf6972601c03035c28e5
+content-type: application/json
+
+{
+	"test": "world",
+  "test_1": "You"
+}
+
+### DELETE REQUEST
+DELETE http://localhost:8080/users/6446ebc8df8188a38c304569
+
+Method: POST
+URL: http://localhost:8080/api/auth/signup
+Headers:
+
+
+
+
+# http://localhost:8080/api/blogs
+# Authorization: Bearer <your_JWT_token>
+
+# {
+#   "title": "My First Blog Post",
+#   "content": "This is the content of my first blog post."
+# }
+
+# {
+#   "email": "john.dee@example.com",
+#   "password": "password123"
+# }
+
