@@ -23,6 +23,11 @@ app.use(cookieParser());
 app.use('/public', express.static('public'));
 app.use('/assets', express.static('assets'));
 
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/views/companies.html');
+});
+
+
 const port = process.env.PORT || 8080;
 (async () => {
   const { User, Blog, Comment, PW_2023_Q2 } = await connect();

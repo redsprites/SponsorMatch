@@ -22,6 +22,7 @@ exports.jobTitleQuery = async (req, res) => {
     let companies = [];
     let companiesQueue = new Queue();
     let pageEmpty = false;
+    let errorOccurred = false;
 
     const { PW_2023_Q2 } = req.models; 
 
@@ -54,7 +55,7 @@ exports.jobTitleQuery = async (req, res) => {
         const rssUrl = "https://www.indeed.com/rss?q=" + encodedJobTitle + "&start="+ start;
         console.log(rssUrl);
         companies = await parseRss(rssUrl);
-        if (companies.length === 0 || companies.length === "undefined") {
+        if (companies.length === 0) {
             pageEmpty = true;
         }
         start += companies.length;
@@ -73,24 +74,28 @@ exports.jobTitleQuery = async (req, res) => {
             if (isFirstFetch) {
                 isFirstFetch = false;
             } else {
-                // Wait for 3 seconds before making the next fetch
-                await new Promise(resolve => setTimeout(resolve, 15000));
+                // Wait for 15 seconds before making the next fetch, printing a countdown
+                for (let i = 3; i > 0; i--) {
+                    console.log(i);
+                    await new Promise(resolve => setTimeout(resolve, 1));
+                }
             }
-    
             await fetchPage();
-    
             while (companiesQueue.length > 0) {
                 await processCompany(companiesQueue.pop());
             }
         }
+        
     
         if (!errorOccurred) {
             res.end(); // End the response when all companies have been sent
         }
     } catch (error) {
         console.error(error);
-        res.status(500).json({ success: false, message: 'An error occurred while processing your request' });
-        errorOccurred = true;
+        if (!res.headersSent) {
+            res.status(500).json({ success: false, message: 'An error occurred while processing your request' });
+        }
+           errorOccurred = true;
     }
 }
 
