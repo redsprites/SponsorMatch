@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +28,7 @@
     "mongoose": "^7.1.0",
     "node-html-parser": "^6.1.5",
     "open": "^9.1.0",
+    "puppeteer": "^20.7.4",
     "queue": "^7.0.0",
     "xml2js": "^0.6.0"
   }
